@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farmácia Comunitária | Drogaria 24h</title>
+  <meta name="description" content="Farmácia Comunitária - Drogaria 24h no Itapoã/DF. Quem compara compra aqui." />
+  <meta name="theme-color" content="#0d5bff" />
+  <style>
+    :root {
+      --blue: #0d5bff;
+      --blue-dark: #083bb3;
+      --blue-soft: #eaf3ff;
+      --red: #ef2f37;
+      --red-dark: #d6252d;
+      --text: #11213b;
+      --muted: #5b6b85;
+      --white: #ffffff;
+      --border: rgba(13, 91, 255, 0.12);
+      --shadow: 0 18px 50px rgba(10, 42, 120, 0.12);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(255,255,255,0.88);
+      border-bottom: 1px solid rgba(17, 33, 59, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      color: var(--blue-dark);
+    }
+
+    .logo {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 54px;
+      filter: drop-shadow(0 10px 22px rgba(239, 47, 55, .26));
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+    }
+
+    .brand-text small {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: .2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--red), #ff575f);
+      box-shadow: 0 16px 30px rgba(239, 47, 55, .22);
+    }
+
+    .btn-secondary {
+      color: var(--blue);
+      background: rgba(255,255,255,.15);
+      border-color: rgba(255,255,255,.32);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.18), transparent 35%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,.12), transparent 28%),
+        linear-gradient(135deg, var(--blue) 0%, #1778ff 55%, var(--blue-dark) 100%);
+      color: var(--white);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -8% -120px auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      filter: blur(10px);
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px;
+      align-items: center;
+      padding: 72px 0 82px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      line-height: .98;
+      letter-spacing: -.03em;
+      max-width: 11ch;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      max-width: 62ch;
+      color: rgba(255,255,255,.88);
+      margin: 18px 0 0;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .hero-card {
+      position: relative;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-card h3 {
+      margin: 0 0 16px;
+      font-size: 1.35rem;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .info-item {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .info-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: .95rem;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .8rem;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: -.03em;
+      margin: 0;
+      color: var(--blue-dark);
+    }
+
+    .section-head p, .about-copy p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 12px 0 0;
+      max-width: 62ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(13,91,255,.14), rgba(239,47,55,.12));
+      color: var(--blue);
+      font-weight: 900;
+      margin-bottom: 18px;
+      font-size: 1.2rem;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.22rem;
+      color: var(--blue-dark);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .feature-panel {
+      background: linear-gradient(160deg, var(--blue-soft) 0%, #ffffff 100%);
+      border: 1px solid rgba(13, 91, 255, .12);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-panel .big {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .feature {
+      display: flex;
+      gap: 12px;
+      align-items: start;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .tick {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      flex: 0 0 24px;
+      display: grid;
+      place-items: center;
+      background: rgba(239,47,55,.12);
+      color: var(--red);
+      font-size: .92rem;
+      font-weight: 900;
+      margin-top: 2px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card h3 {
+      margin: 0 0 18px;
+      color: var(--blue-dark);
+      font-size: 1.35rem;
+    }
+
+    .contact-lines {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-line strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: .96rem;
+      color: var(--blue-dark);
+    }
+
+    .contact-line span,
+    .contact-line a {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .socials {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .social {
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .footer {
+      padding: 28px 0 42px;
+      color: var(--muted);
+    }
+
+    .footer-box {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      border-top: 1px solid rgba(17,33,59,.08);
+      padding-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: var(--blue-dark);
+      border-radius: 999px;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 980px) {
+      .hero-wrap,
+      .grid-3,
+      .about,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        position: absolute;
+        inset: calc(100% + 8px) 16px auto 16px;
+        background: rgba(255,255,255,.98);
+        border: 1px solid rgba(17,33,59,.08);
+        border-radius: 20px;
+        padding: 14px;
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        align-items: stretch;
+        display: none;
+      }
+
+      .nav-links.active { display: flex; }
+      .mobile-toggle { display: block; }
+    }
+
+    @media (max-width: 620px) {
+      .nav { padding: 12px 0; }
+      .brand { gap: 10px; }
+      .logo { width: 46px; height: 46px; flex-basis: 46px; }
+      .hero-wrap { padding: 56px 0 62px; }
+      .card, .contact-card, .feature-panel, .hero-card { padding: 22px; }
+      .cta-row { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#inicio" class="brand" aria-label="Farmácia Comunitária">
+        <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="#ef2f37"></circle>
+          <rect x="39" y="16" width="22" height="68" rx="4" fill="#ffffff"></rect>
+          <rect x="16" y="39" width="68" height="22" rx="4" fill="#ffffff"></rect>
+        </svg>
+        <span class="brand-text">
+          <span>Farmácia Comunitária</span>
+          <small>Drogaria 24h</small>
+        </span>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Abrir menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#contato">Contato</a>
+        <a class="btn btn-primary" href="https://wa.me/5561991108002" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-wrap">
+        <div>
+          <div class="pill">Atendimento 24 horas • Itapoã/DF</div>
+          <h1>Quem compara compra aqui.</h1>
+          <p>
+            A <strong>Farmácia Comunitária</strong> oferece atendimento em drogaria com praticidade,
+            conveniência e um canal rápido pelo WhatsApp para facilitar o seu dia a dia.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://wa.me/5561991108002" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+            <a class="btn btn-secondary" href="#contato">Ver endereço</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Informações rápidas</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <strong>Serviço principal</strong>
+              <span>Drogaria</span>
+            </div>
+            <div class="info-item">
+              <strong>Horário de funcionamento</strong>
+              <span>24 horas</span>
+            </div>
+            <div class="info-item">
+              <strong>WhatsApp</strong>
+              <span>(61) 99110-8002</span>
+            </div>
+            <div class="info-item">
+              <strong>Endereço</strong>
+              <span>Quadra 01 Lote 01 Del Lago - Itapoã - DF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Serviços</div>
+            <h2>Atendimento direto, simples e acessível.</h2>
+          </div>
+          <p>
+            Um site institucional objetivo, com foco em contato rápido, presença local e acesso fácil
+            às principais informações da farmácia.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon-wrap">24h</div>
+            <h3>Drogaria 24h</h3>
+            <p>Funcionamento contínuo para facilitar o atendimento em qualquer horário, todos os dias.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-wrap">WA</div>
+            <h3>Contato por WhatsApp</h3>
+            <p>Canal direto para agilizar dúvidas, informações e atendimento com mais praticidade.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-wrap">DF</div>
+            <h3>Presença local</h3>
+            <p>Atendimento no Itapoã/DF, com endereço claro e redes sociais acessíveis em um só lugar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container about">
+        <div class="about-copy card">
+          <div class="eyebrow">Sobre a empresa</div>
+          <h2>Uma presença digital moderna para a Farmácia Comunitária.</h2>
+          <p>
+            Este site foi pensado para apresentar a marca de forma limpa, moderna e confiável,
+            usando as cores da identidade visual da empresa como base principal.
+          </p>
+          <p>
+            A proposta aqui é valorizar o essencial: nome forte, acesso rápido ao WhatsApp,
+            horário de funcionamento, endereço e redes sociais.
+          </p>
+        </div>
+
+        <div class="feature-panel">
+          <div class="big">Moderno, rápido e responsivo</div>
+          <div class="feature-list">
+            <div class="feature"><span class="tick">✓</span><span>Visual adaptado para celular, tablet e computador.</span></div>
+            <div class="feature"><span class="tick">✓</span><span>Cores alinhadas à identidade da marca, sem depender dos telefones presentes na arte antiga.</span></div>
+            <div class="feature"><span class="tick">✓</span><span>Botão de ação em destaque para contato imediato pelo WhatsApp.</span></div>
+            <div class="feature"><span class="tick">✓</span><span>Estrutura simples para editar depois, caso queira incluir novos serviços ou promoções.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Contato</div>
+            <h2>Fale com a Farmácia Comunitária.</h2>
+          </div>
+          <p>
+            Use os canais abaixo para entrar em contato, localizar a unidade ou acompanhar as redes sociais.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Informações principais</h3>
+            <div class="contact-lines">
+              <div class="contact-line">
+                <strong>WhatsApp / Telefone</strong>
+                <a href="https://wa.me/5561991108002" target="_blank" rel="noopener noreferrer">(61) 99110-8002</a>
+              </div>
+              <div class="contact-line">
+                <strong>Endereço</strong>
+                <span>Quadra 01 Lote 01 Del Lago - Itapoã - DF</span>
+              </div>
+              <div class="contact-line">
+                <strong>Horário</strong>
+                <span>24 horas</span>
+              </div>
+              <div class="contact-line">
+                <strong>Serviço</strong>
+                <span>Drogaria</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <h3>Redes sociais e localização</h3>
+            <div class="contact-lines">
+              <div class="contact-line">
+                <strong>Instagram</strong>
+                <a href="https://www.instagram.com/farmaciacomunitaria" target="_blank" rel="noopener noreferrer">@farmaciacomunitaria</a>
+              </div>
+              <div class="contact-line">
+                <strong>Facebook</strong>
+                <a href="https://www.facebook.com/FARMACIACOMUNITARIADF" target="_blank" rel="noopener noreferrer">Farmácia Comunitária DF</a>
+              </div>
+              <div class="contact-line">
+                <strong>Como chegar</strong>
+                <a href="https://www.google.com/maps/search/?api=1&query=Quadra+01+Lote+01+Del+Lago+-+Itapo%C3%A3+-+DF" target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a>
+              </div>
+            </div>
+
+            <div class="socials">
+              <a class="social" href="https://www.instagram.com/farmaciacomunitaria" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a class="social" href="https://www.facebook.com/FARMACIACOMUNITARIADF" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a class="social" href="https://wa.me/5561991108002" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-box">
+      <div>© 2026 Farmácia Comunitária. Todos os direitos reservados.</div>
+      <div>Quem compara compra aqui.</div>
+    </div>
+  </footer>
+</body>
+</html>
